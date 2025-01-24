@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+  labels:
+    app: celery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: celery
+  template:
+    metadata:
+      labels:
+        app: celery
+    spec:
+      containers:
+        - name: celery
+          image: arjundange/celery_worker:latest
+          command: ["celery", "-A", "blog_using_django", "worker", "--loglevel=info"]
+          env:
+            - name: BROKER_URL
+              value: redis://redis:6379/0
+            - name: DEBUG
+              value: "True"
+            - name: DB_NAME
+              value: postgres
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: postgres
+            - name: DB_HOST
+              value: postgres
+            - name: DB_PORT
+              value: "5432"

@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   web1:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: arjundange/django_app:latest
     container_name: django_app
     ports:
       - "8000:8000"
@@ -45,9 +43,7 @@ services:
       - "6379:6379"
 
   celery:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: arjundange/celery_worker;
     container_name: celery_worker
     depends_on:
       - redis

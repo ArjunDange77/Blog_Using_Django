@@ -43,7 +43,7 @@ services:
       - "6379:6379"
 
   celery:
-    image: arjundange/celery_worker;
+    image: arjundange/celery_worker
     container_name: celery_worker
     depends_on:
       - redis

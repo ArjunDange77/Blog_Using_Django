@@ -17,7 +17,7 @@ spec:
       containers:
         - name: celery
           image: arjundange/celery_worker:latest
-          command: ["celery", "-A", "blog_using_django", "worker", "--loglevel=info"]
+          command: ["celery", "-A", "blog", "worker", "--loglevel=info"]
           env:
             - name: BROKER_URL
               value: redis://redis:6379/0
